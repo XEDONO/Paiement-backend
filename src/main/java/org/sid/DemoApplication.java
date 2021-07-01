@@ -1,10 +1,8 @@
 package org.sid;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 
-import org.sid.dao.ContactRepository;
-import org.sid.entities.Contact;
+import org.sid.dao.ClientRepository;
+import org.sid.dao.VilleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -13,7 +11,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class DemoApplication implements CommandLineRunner {
 	@Autowired
-	private ContactRepository contactRepository;
+	private ClientRepository clientRepository;
+	 
+	@Autowired
+	private VilleRepository villeRepository;
  
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
@@ -21,18 +22,19 @@ public class DemoApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-//		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-//		contactRepository.save(new Contact("Hassani","Med",df.parse("12/10/1995"),"hassan@gmail.com",659481624,"hassan.jpg"));
-//		contactRepository.save(new Contact("ibrahimi","khalid",df.parse("12/10/1995"),"khalid@gmail.com",659481224,"hassan.jpg"));
-//		contactRepository.save(new Contact("laarichi","kawtar",df.parse("12/10/1995"),"kawtar@gmail.com",659481424,"hassan.jpg"));
-//		contactRepository.findAll().forEach(c->{
-//			System.out.println(c.getNom());
-//		});
-		// TODO Auto-generated method stub
-		// TODO Auto-generated method stub
 		
-		// TODO Auto-generated method stub
+		//Ville ville = new Ville("Casablanca");
 		
-	}
+		
+          //Client client1 = new Client("nom1", "prenom1", "0654879865", "BmCE",ville);
+         // Client client2 = new Client("nom2", "prenom2", "0654879865", "BmCE",ville);
+          //Client client3 = new Client("nom3", "prenom3", "0654879865", "BmCE",ville);
+          
+         
+          
+          //this.clientRepository.save(client1);
+      //    this.clientRepository.save(client2);
+       //   this.clientRepository.save(client3);
+	} 
 
 }

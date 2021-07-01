@@ -1,13 +1,11 @@
 package org.sid.dao;
 
-import org.sid.entities.Client;
+import org.sid.entities.Ville;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 
-
 @Repository
-public interface ClientRepository extends JpaRepository<Client,Long> {
+public interface VilleRepository extends JpaRepository<Ville,Long>{
 
 }
-

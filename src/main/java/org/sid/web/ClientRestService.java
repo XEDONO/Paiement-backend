@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @Service 
-public class ClientRestService {
+public class ClientRestService implements IClientService{
 	
 	
 @Autowired
@@ -31,49 +31,56 @@ public List<Client> GetClients() {
     return clientRepository.findAll();
 }
 
-@GetMapping("/clients/{id}")
-public ResponseEntity<Client> getClientById(@PathVariable(value = "id") Long id)
-		throws ResourceNotFoundException {
-	Client client = clientRepository.findById(id)
-			.orElseThrow(() -> new ResourceNotFoundException("Employee not found for this id :: " + id));
-	return ResponseEntity.ok().body(client);
+@Override
+public void addClient(Client client) {
+	
+	clientRepository.save(client);
 }
 
 
-
-
-@PostMapping("/clients")
-public Client createClient(@Validated @RequestAttribute Client employee) {
-	return clientRepository.save(employee);
-}
-
-
-
-
-@PutMapping("/clients/{id}")
-public ResponseEntity<Client> updateEmployee(@PathVariable(value = "id") Long id,
-		@Validated @RequestBody Client clientDetails) throws ResourceNotFoundException {
-	Client client = clientRepository.findById(id)
-			.orElseThrow(() -> new ResourceNotFoundException("Client pas trouvé pour cette id :: " + id));
-
-	client.setNom(clientDetails.getNom());
-	client.setPrenom(clientDetails.getPrenom());
-	final Client updatedClient = clientRepository.save(client);
-	return ResponseEntity.ok(updatedClient);
-}
-
-
-@DeleteMapping("/employees/{id}")
-public Map<String, Boolean> deleteClient(@PathVariable(value = "id") Long id)
-		throws ResourceNotFoundException {
-	Client client = clientRepository.findById(id)
-			.orElseThrow(() -> new ResourceNotFoundException("Client not found for this id :: " + id));
-
-	clientRepository.delete(client);
-	Map<String, Boolean> response = new HashMap<>();
-	response.put("deleted", Boolean.TRUE);
-	return response;
-}
+//@GetMapping("/clients/{id}")
+//public ResponseEntity<Client> getClientById(@PathVariable(value = "id") Long id)
+//		throws ResourceNotFoundException {
+//	Client client = clientRepository.findById(id)
+//			.orElseThrow(() -> new ResourceNotFoundException("Employee not found for this id :: " + id));
+//	return ResponseEntity.ok().body(client);
+//}
+//
+//
+//
+//
+//@PostMapping("/clients")
+//public Client createClient(@Validated @RequestAttribute Client employee) {
+//	return clientRepository.save(employee);
+//}
+//
+//
+//
+//
+//@PutMapping("/clients/{id}")
+//public ResponseEntity<Client> updateEmployee(@PathVariable(value = "id") Long id,
+//		@Validated @RequestBody Client clientDetails) throws ResourceNotFoundException {
+//	Client client = clientRepository.findById(id)
+//			.orElseThrow(() -> new ResourceNotFoundException("Client pas trouvé pour cette id :: " + id));
+//
+//	client.setNom(clientDetails.getNom());
+//	client.setPrenom(clientDetails.getPrenom());
+//	final Client updatedClient = clientRepository.save(client);
+//	return ResponseEntity.ok(updatedClient);
+//}
+//
+//
+//@DeleteMapping("/employees/{id}")
+//public Map<String, Boolean> deleteClient(@PathVariable(value = "id") Long id)
+//		throws ResourceNotFoundException {
+//	Client client = clientRepository.findById(id)
+//			.orElseThrow(() -> new ResourceNotFoundException("Client not found for this id :: " + id));
+//
+//	clientRepository.delete(client);
+//	Map<String, Boolean> response = new HashMap<>();
+//	response.put("deleted", Boolean.TRUE);
+//	return response;
+//}
 
 
 
